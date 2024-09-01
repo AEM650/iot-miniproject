@@ -10,13 +10,13 @@ export default function Home() {
 
   const [items, setItems] = useState([]);
 
-  const buzzeraction = (id: number, buzzerstatus: number) => {
+  const buzzeraction = (id: number, led: number) => {
     fetch('/api/client', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ id, buzzerstatus })
+      body: JSON.stringify({ id, led })
     })
   }
 
@@ -59,11 +59,11 @@ export default function Home() {
                 </Badge>
               </div>
               <div>
-                {/* <Button className="w-full"
-                  onClick={() => buzzeraction(item.id, item.buzzer_status == 0 ? 1 : 0)}
+                <Button className="w-full"
+                  onClick={() => buzzeraction(item.id, item.led == 0 ? 1 : 0)}
                 >
-                  {item.buzzer_status  == 0 ? "Buzzer ON" : "Buzzer OFF"}
-                </Button> */}
+                  {item.led  == 0 ? "LED ON" : "LED OFF"}
+                </Button>
               </div>
             </CardContent>
           </Card>

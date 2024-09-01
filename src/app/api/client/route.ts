@@ -41,3 +41,20 @@ export async function GET(){
         });
     }
 }
+
+export async function PUT(req: Request){
+    try {
+        const {led} = await req.json();
+        const res = await client.query('UPDATE "opp003" SET led = $1 RETURNING *', [led]);
+        return new Response(JSON.stringify(res.rows[0]), {
+            status: 200,
+            headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+        });
+    } catch (error) {
+        console.error(error);
+        return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
+            status: 500,
+            headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+        });
+    }
+}
