@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     try {
         const { ult_value, led} = await req.json();
         // Hash password
-        const res = await client.query('INSERT INTO "BO013" (ult_value, led) VALUES ($1, $2) RETURNING *', [ult_value, led]);
+        const res = await client.query('INSERT INTO "oop003" (ult_value, led) VALUES ($1, $2) RETURNING *', [ult_value, led]);
         return new Response(JSON.stringify(res.rows[0]), {
             status: 201,
             headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
